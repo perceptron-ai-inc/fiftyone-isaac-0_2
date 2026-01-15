@@ -1,0 +1,56 @@
+{
+    "name": "Isaac-0.2",
+    "url": "https://github.com/perceptron-ai-inc/fiftyone-isaac-0.2",
+    "models": [
+        {
+            "base_name": "PerceptronAI/Isaac-0.2-2B-Preview",
+            "base_filename": "Isaac-0.2-2B-Preview",
+            "author": "PerceptronAI",
+            "license": "Creative Commons Attribution Non Commercial 4.0",
+            "source": "https://huggingface.co/PerceptronAI/Isaac-0.2-2B-Preview",
+            "description": "Isaac 0.2 2B (Preview) is an open-source, 2B-parameter model built for real-world applications. Isaac 0.2 is part of Perceptron AI's family of models built to be the intelligence layer for the physical world.",
+            "tags": [
+                "detection",
+                "ocr",
+                "VLM",
+                "classification",
+                "zero-shot"
+            ],
+            "date_added": "2026-01-14",
+            "requirements": {
+                "packages": ["huggingface-hub","transformers", "torch", "torchvision", "perceptron"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            }
+        },
+        {
+            "base_name": "PerceptronAI/Isaac-0.2-1B",
+            "base_filename": "Isaac-0.2-1B",
+            "author": "PerceptronAI",
+            "license": "Creative Commons Attribution Non Commercial 4.0",
+            "source": "https://huggingface.co/PerceptronAI/Isaac-0.2-1B",
+            "description": "Isaac 0.2 1B is an open-source, 1B-parameter model built for real-world applications. Isaac 0.2 is part of Perceptron AI's family of models built to be the intelligence layer for the physical world.",
+            "tags": [
+                "detection",
+                "ocr",
+                "VLM",
+                "classification",
+                "zero-shot"
+            ],
+            "date_added": "2026-01-14",
+            "requirements": {
+                "packages": ["huggingface-hub", "transformers", "torch", "torchvision", "perceptron"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            }
+        }
+    ]
+}
