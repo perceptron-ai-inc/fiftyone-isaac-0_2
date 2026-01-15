@@ -49,7 +49,7 @@ import fiftyone.zoo as foz
 
 # Register this model zoo source
 foz.register_zoo_model_source(
-    "https://github.com/perceptron-ai-inc/fiftyone-isaac-0.2",
+    "https://github.com/perceptron-ai-inc/fiftyone-isaac-0_2",
     overwrite=True
 )
 ```
@@ -260,7 +260,7 @@ If you use Isaac-0.2 in your research or applications, please cite:
   title = {Isaac-0.2 FiftyOne Model Zoo Integration},
   author = {Perceptron AI},
   year = {2025},
-  url = {https://github.com/perceptron-ai-inc/fiftyone-isaac-0.2},
+  url = {https://github.com/perceptron-ai-inc/fiftyone-isaac-0_2},
   note = {FiftyOne integration for Isaac-0.2 perceptive-language model}
 }
 
