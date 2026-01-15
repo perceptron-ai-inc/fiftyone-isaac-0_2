@@ -14,7 +14,7 @@ from transformers import AutoTokenizer, AutoConfig, AutoProcessor, AutoModelForC
 from transformers.utils.import_utils import is_flash_attn_2_available
 
 # Perceptron SDK imports for parsing
-from perceptron import extract_points, strip_tags, extract_reasoning
+from perceptron import extract_points, strip_tags
 
 # Local converters for Perceptron -> FiftyOne types
 from .converters import (
@@ -280,9 +280,8 @@ class IsaacModel(SamplesMixin, Model):
         Returns:
             List of classification dictionaries with 'label' keys
         """
-        # Remove think blocks first, then strip geometry tags
-        text_without_think = extract_reasoning(output_text).text
-        cleaned_text = strip_tags(text_without_think).strip()
+        # Strip geometry tags
+        cleaned_text = strip_tags(output_text).strip()
 
         # Extract JSON from markdown code block if present
         if "```json" in cleaned_text:
@@ -330,14 +329,12 @@ class IsaacModel(SamplesMixin, Model):
             Processed output in the appropriate format for the operation
         """
         if self.operation == "vqa":
-            # Remove think blocks, then strip geometry tags
-            text_without_think = extract_reasoning(output_text).text
-            return strip_tags(text_without_think).strip()
+            # Strip geometry tags
+            return strip_tags(output_text).strip()
 
         elif self.operation == "ocr":
-            # Remove think blocks, then strip geometry tags
-            text_without_think = extract_reasoning(output_text).text
-            return strip_tags(text_without_think).strip()
+            # Strip geometry tags
+            return strip_tags(output_text).strip()
 
         elif self.operation == "detect":
             # Extract bounding boxes using Perceptron SDK
