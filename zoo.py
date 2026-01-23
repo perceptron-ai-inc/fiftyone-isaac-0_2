@@ -102,6 +102,7 @@ class IsaacModel(SamplesMixin, Model):
         self.prompt = prompt
         self._enable_thinking = False
         self._enable_focus_tool_call = False
+        self._max_new_tokens = 256
         
         self.device = get_device()
         logger.info(f"Using device: {self.device}")
@@ -220,6 +221,14 @@ class IsaacModel(SamplesMixin, Model):
                 f"Current operation '{self._operation}' has hint: {OPERATIONS.get(self._operation, {}).get('hint')}"
             )
         self._enable_focus_tool_call = bool(value)
+
+    @property
+    def max_new_tokens(self):
+        return self._max_new_tokens
+
+    @max_new_tokens.setter
+    def max_new_tokens(self, value):
+        self._max_new_tokens = int(value)
 
     def _build_hint_tag(self) -> str:
         """Build the hint tag based on operation and enabled features.
@@ -429,7 +438,7 @@ class IsaacModel(SamplesMixin, Model):
         with torch.no_grad():
             generated_ids = self.model.generate(
                 tensor_stream=tensor_stream,
-                max_new_tokens=16384,
+                max_new_tokens=self._max_new_tokens,
                 do_sample=False,
                 pad_token_id=self.processor.tokenizer.eos_token_id,
                 eos_token_id=self.processor.tokenizer.eos_token_id,
@@ -497,7 +506,7 @@ class IsaacModel(SamplesMixin, Model):
             with torch.no_grad():
                 generated_ids = self.model.generate(
                     tensor_stream=tensor_stream,
-                    max_new_tokens=8192,
+                    max_new_tokens=self._max_new_tokens,
                     do_sample=False,
                     pad_token_id=self.processor.tokenizer.eos_token_id,
                     eos_token_id=self.processor.tokenizer.eos_token_id,
