@@ -38,6 +38,7 @@ Read the [full announcement](https://www.perceptron.inc/blog/introducing-isaac-0
 pip install fiftyone
 pip install perceptron
 pip install transformers
+pip install accelerate
 pip install torch torchvision
 pip install huggingface-hub
 ```

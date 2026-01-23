@@ -18,7 +18,7 @@
             ],
             "date_added": "2026-01-14",
             "requirements": {
-                "packages": ["huggingface-hub","transformers", "torch", "torchvision", "perceptron"],
+                "packages": ["huggingface-hub", "transformers", "accelerate", "torch", "torchvision", "perceptron"],
                 "cpu": {
                     "support": true
                 },
@@ -43,7 +43,7 @@
             ],
             "date_added": "2026-01-14",
             "requirements": {
-                "packages": ["huggingface-hub", "transformers", "torch", "torchvision", "perceptron"],
+                "packages": ["huggingface-hub", "transformers", "accelerate", "torch", "torchvision", "perceptron"],
                 "cpu": {
                     "support": true
                 },
