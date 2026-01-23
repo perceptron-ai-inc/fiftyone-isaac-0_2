@@ -110,15 +110,20 @@ class IsaacModel(SamplesMixin, Model):
             "device_map": self.device,
         }
 
-        # Set optimizations based on CUDA device capabilities
+        # Set optimizations based on device capabilities
         if self.device == "cuda" and torch.cuda.is_available():
             capability = torch.cuda.get_device_capability(self.device)
-            
-            # Enable flash attention if available, otherwise use sdpa
-            model_kwargs["attn_implementation"] = "flash_attention_2" if is_flash_attn_2_available() else "sdpa"
-            
-            # Enable bfloat16 on Ampere+ GPUs (compute capability 8.0+), otherwise use float16
-            model_kwargs["torch_dtype"] = torch.bfloat16 if capability[0] >= 8 else torch.float16
+
+            # Flash attention requires Ampere+ (compute capability 8.0+)
+            if capability[0] >= 8 and is_flash_attn_2_available():
+                model_kwargs["attn_implementation"] = "flash_attention_2"
+                model_kwargs["torch_dtype"] = torch.bfloat16
+            else:
+                model_kwargs["attn_implementation"] = "sdpa"
+                model_kwargs["torch_dtype"] = torch.float16
+        else:
+            # Use eager attention for CPU/MPS (flash attention is CUDA-only)
+            model_kwargs["attn_implementation"] = "eager"
 
         # Load model and processor
         logger.info(f"Loading model from {model_path}")
