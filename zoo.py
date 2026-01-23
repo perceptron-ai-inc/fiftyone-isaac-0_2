@@ -113,6 +113,7 @@ class IsaacModel(SamplesMixin, Model):
         # Set optimizations based on device capabilities
         if self.device == "cuda" and torch.cuda.is_available():
             capability = torch.cuda.get_device_capability(self.device)
+            print(f"[Isaac] CUDA device capability: {capability}")
 
             # Flash attention requires Ampere+ (compute capability 8.0+)
             if capability[0] >= 8 and is_flash_attn_2_available():
@@ -124,6 +125,8 @@ class IsaacModel(SamplesMixin, Model):
         else:
             # Use eager attention for CPU/MPS (flash attention is CUDA-only)
             model_kwargs["attn_implementation"] = "eager"
+
+        print(f"[Isaac] Device: {self.device}, Attention: {model_kwargs['attn_implementation']}")
 
         # Load model and processor
         logger.info(f"Loading model from {model_path}")
