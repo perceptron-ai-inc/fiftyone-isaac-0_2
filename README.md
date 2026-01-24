@@ -2,6 +2,8 @@
 
 A [FiftyOne Model Zoo](https://docs.voxel51.com/user_guide/model_zoo/index.html) integration for [Isaac-0.2](https://huggingface.co/PerceptronAI/Isaac-0.2-2B-Preview) by [Perceptron AI](https://perceptron.inc) - hybrid-reasoning vision-language models designed for real-world visual understanding tasks.
 
+![image](isaac-detections.gif)
+
 ## Overview
 
 Isaac-0.2 extends the efficient frontier of perception — small models that outperform systems 10× larger on visual reasoning and perception tasks, all running on commodity GPUs or edge devices. From robotics to media search to industrial inspection, Isaac 0.2 delivers high-accuracy perception without the heavy compute footprint.
